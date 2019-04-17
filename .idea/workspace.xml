@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef1aff4-40e3-4238-8d7c-b29b69399ded" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hw3DBSudoku/src/assign3/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/hw3DBSudoku/src/assign3/Sudoku.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/hw3DBSudoku/bin/" />
@@ -16,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw3DBSudoku/src/assign3/Sudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="351" column="22" selection-start-line="351" selection-start-column="22" selection-end-line="351" selection-end-column="22" />
+            <state relative-caret-position="285">
+              <caret line="127" column="36" selection-start-line="127" selection-start-column="36" selection-end-line="127" selection-end-column="36" />
               <folding>
                 <element signature="e#4709#4710#0" expanded="true" />
                 <element signature="e#4738#4739#0" expanded="true" />
@@ -35,8 +36,10 @@
                 <element signature="e#5837#5838#0" expanded="true" />
                 <element signature="e#6647#6648#0" expanded="true" />
                 <element signature="e#6696#6697#0" expanded="true" />
-                <element signature="e#9360#9361#0" expanded="true" />
-                <element signature="e#9412#9413#0" expanded="true" />
+                <element signature="e#9320#9321#0" expanded="true" />
+                <element signature="e#9363#9364#0" expanded="true" />
+                <element signature="e#9392#9393#0" expanded="true" />
+                <element signature="e#9415#9416#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,6 +59,7 @@
       <find>row</find>
       <find>sqr</find>
       <find>main</find>
+      <find>elapsed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,8 +84,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -104,12 +106,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555531756986" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555531766765" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -160,12 +164,13 @@
       <option name="presentableId" value="Default" />
       <updated>1555516517606</updated>
       <workItem from="1555516522247" duration="174000" />
-      <workItem from="1555516723359" duration="14782000" />
+      <workItem from="1555516723359" duration="15159000" />
+      <workItem from="1555533655781" duration="363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14956000" />
+    <option name="totallyTimeSpent" value="15696000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="25" width="1305" height="743" extended-state="6" />
@@ -185,7 +190,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.58084774" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.66718996" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.7990581" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32967034" />
@@ -225,8 +230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw3DBSudoku/src/assign3/Sudoku.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="351" column="22" selection-start-line="351" selection-start-column="22" selection-end-line="351" selection-end-column="22" />
+        <state relative-caret-position="285">
+          <caret line="127" column="36" selection-start-line="127" selection-start-column="36" selection-end-line="127" selection-end-column="36" />
           <folding>
             <element signature="e#4709#4710#0" expanded="true" />
             <element signature="e#4738#4739#0" expanded="true" />
@@ -244,8 +249,10 @@
             <element signature="e#5837#5838#0" expanded="true" />
             <element signature="e#6647#6648#0" expanded="true" />
             <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#9360#9361#0" expanded="true" />
-            <element signature="e#9412#9413#0" expanded="true" />
+            <element signature="e#9320#9321#0" expanded="true" />
+            <element signature="e#9363#9364#0" expanded="true" />
+            <element signature="e#9392#9393#0" expanded="true" />
+            <element signature="e#9415#9416#0" expanded="true" />
           </folding>
         </state>
       </provider>

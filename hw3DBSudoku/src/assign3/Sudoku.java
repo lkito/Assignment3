@@ -120,7 +120,6 @@ public class Sudoku {
 		return result;
 	}
 
-
 	// Provided -- the deliverable main().
 	// You can edit to do easier cases, but turn in
 	// solving hardGrid.
@@ -180,6 +179,7 @@ public class Sudoku {
 		initGridAndMaps(ints);
 		initEmptyList();
 		solved = null;
+		solutionCount = 0;
 	}
 
 	public Sudoku(String text){
@@ -280,8 +280,8 @@ public class Sudoku {
 		}
 	}
 
-	private int recurSolve(int index, int[][] solveGrid){
-		int solutions = 0;
+	private void recurSolve(int index, int[][] solveGrid){
+		if(solutionCount >= MAX_SOLUTIONS) return;
 		if(index == emptySpotList.size() - 1){
 			for(int i = 1; i < SIZE; i++){
 				if(emptySpotList.get(index).isLegalPlacement(i)){
@@ -291,10 +291,10 @@ public class Sudoku {
 						copyTwoDArr(solveGrid, solved);
 						solveGrid[emptySpotList.get(index).getRow()][emptySpotList.get(index).getCol()] = 0;
 					}
-					return 1;
+					solutionCount++;
 				}
 			}
-			return 0;
+			return;
 		}
 		for(int i = 1; i <= SIZE; i++){
 			if(emptySpotList.get(index).isLegalPlacement(i)){
@@ -305,14 +305,13 @@ public class Sudoku {
 				rowSets.get(curRow).add(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
 				colSets.get(curCol).add(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
 				sqrSets.get((curRow /3)*3 + curCol /3).add(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
-				solutions += recurSolve(index + 1, solveGrid);
+				recurSolve(index + 1, solveGrid);
 				rowSets.get(curRow).remove(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
 				colSets.get(curCol).remove(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
 				sqrSets.get((curRow /3)*3 + curCol /3).remove(new FullSpot(curSpot.getRow(), curSpot.getCol(), i));
 				solveGrid[curRow][curCol] = 0;
 			}
 		}
-		return solutions;
 	}
 
 	/**
@@ -322,10 +321,10 @@ public class Sudoku {
 		int[][] solveGrid = new int[grid.length][grid[0].length];
 		copyTwoDArr(grid, solveGrid);
 		long startTime = System.currentTimeMillis();
-		int result = recurSolve(0, solveGrid);
+		recurSolve(0, solveGrid);
 		long endTime = System.currentTimeMillis();
 		solveTime = endTime - startTime;
-		return result;
+		return solutionCount;
 	}
 
 	@Override
@@ -364,6 +363,7 @@ public class Sudoku {
 	private long solveTime;
 	private int[][] grid;
 	private int[][] solved;
+	private int solutionCount;
 	private Map<Integer, HashSet<FullSpot>> rowSets;
 	private Map<Integer, HashSet<FullSpot>> colSets;
 	private Map<Integer, HashSet<FullSpot>> sqrSets;
