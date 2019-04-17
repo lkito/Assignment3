@@ -134,32 +134,92 @@ public class Sudoku {
 		System.out.println("elapsed:" + sudoku.getElapsed() + "ms");
 		System.out.println(sudoku.getSolutionText());
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 * Sets up based on the given ints.
 	 */
 	public Sudoku(int[][] ints) {
-		// YOUR CODE HERE
+		grid = new int[ints.length][ints[0].length];
+		for(int i = 0; i < ints.length; i++){
+			for(int j = 0; j < ints[0].length; j++){
+				grid[i][j] = ints[i][j];
+			}
+		}
 	}
-	
+
+	public Sudoku(String text){
+		this(textToGrid(text));
+	}
+
+	private class Spot {
+		private int row, col, val;
+
+		public Spot(int row, int col, int val){
+			this.row = row;
+			this.col = col;
+			this.val = val;
+		}
+
+		public int getRow() {
+			return row;
+		}
+
+		public int getCol() {
+			return col;
+		}
+
+		public int getVal() {
+			return val;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if(this == obj) return true;
+			if(obj == null || obj.getClass() != this.getClass())
+				return false;
+			if(((Spot)obj).getVal() == this.getVal()) return true;
+			return false;
+		}
+	}
 	
 	
 	/**
 	 * Solves the puzzle, invoking the underlying recursive search.
 	 */
 	public int solve() {
+		long startTime = System.currentTimeMillis();
+
+
+		long endTime = System.currentTimeMillis();
+		solveTime = endTime - startTime;
 		return 0; // YOUR CODE HERE
 	}
-	
+
+	@Override
+	public String toString(){
+		StringBuilder str = new StringBuilder();
+		for(int i = 0; i < grid.length; i++){
+			for(int j = 0; j < grid[0].length; j++){
+				str.append(grid[i][j]);
+				if(j != grid[0].length - 1) str.append(' ');
+			}
+			if(i != grid.length - 1) str.append('\n');
+		}
+		return str.toString();
+	}
+
 	public String getSolutionText() {
-		return ""; // YOUR CODE HERE
+		return this.toString();
 	}
 	
 	public long getElapsed() {
-		return 0; // YOUR CODE HERE
+		return solveTime;
 	}
+
+	private long solveTime;
+	private int[][] grid;
 
 }
