@@ -283,16 +283,16 @@ public class Sudoku {
 	private void recurSolve(int index, int[][] solveGrid){
 		if(solutionCount >= MAX_SOLUTIONS) return;
 		if(index == emptySpotList.size() - 1){
-			for(int i = 1; i < SIZE; i++){
+			for(int i = 1; i <= SIZE; i++){
 				if(emptySpotList.get(index).isLegalPlacement(i)){
 					if(solved == null) {
-						solved = new int[solveGrid.length][solveGrid[i].length];
+						solved = new int[solveGrid.length][solveGrid[0].length];
 						solveGrid[emptySpotList.get(index).getRow()][emptySpotList.get(index).getCol()] = i;
 						copyTwoDArr(solveGrid, solved);
 						solveGrid[emptySpotList.get(index).getRow()][emptySpotList.get(index).getCol()] = 0;
 					}
 					solutionCount++;
-				}
+                }
 			}
 			return;
 		}
@@ -353,6 +353,7 @@ public class Sudoku {
 	}
 
 	public String getSolutionText() {
+	    if(solutionCount == 0) return "";
 		return new Sudoku(solved).toString();
 	}
 
@@ -370,3 +371,18 @@ public class Sudoku {
 	private List<EmptySpot> emptySpotList;
 
 }
+
+/*
+
+"1 6 4 7 0 5 3 8 2
+2 8 7 4 6 3 9 1 5
+9 3 5 2 8 1 4 6 7
+
+3 9 1 8 7 6 5 2 4
+5 4 6 1 3 2 7 9 8
+7 2 8 9 5 4 1 3 6
+
+8 1 9 6 4 7 2 5 3
+6 7 3 5 2 9 8 4 1
+4 5 2 3 1 8 6 7 9"
+ */
