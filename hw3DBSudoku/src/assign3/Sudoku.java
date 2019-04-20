@@ -136,13 +136,13 @@ public class Sudoku {
 
 
 	private void initGridAndMaps(int[][] ints){
-		rowSets = new HashMap<>();
-		colSets = new HashMap<>();
-		sqrSets = new HashMap<>();
+		rowSets = new HashMap<Integer, HashSet<FullSpot>>();
+		colSets = new HashMap<Integer, HashSet<FullSpot>>();
+		sqrSets = new HashMap<Integer, HashSet<FullSpot>>();
 		for(int i = 0; i < ints.length; i++){
-			rowSets.put(i, new HashSet<>());
-			colSets.put(i, new HashSet<>());
-			sqrSets.put(i, new HashSet<>());
+			rowSets.put(i, new HashSet<FullSpot>());
+			colSets.put(i, new HashSet<FullSpot>());
+			sqrSets.put(i, new HashSet<FullSpot>());
 		}
 		for(int i = 0; i < ints.length; i++){
 			for(int j = 0; j < ints[0].length; j++){
@@ -158,7 +158,7 @@ public class Sudoku {
 	}
 
 	private void initEmptyList(){
-		emptySpotList = new ArrayList<>();
+		emptySpotList = new ArrayList<EmptySpot>();
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if(grid[i][j] == 0){
@@ -249,7 +249,7 @@ public class Sudoku {
 
 		public int getVariants(){
 			if(valVariants != 0) return valVariants;
-			Set<FullSpot> neighbours = new HashSet<>();
+			Set<FullSpot> neighbours = new HashSet<FullSpot>();
 			neighbours.addAll(rowSets.get(this.getRow()));
 			neighbours.addAll(colSets.get(this.getCol()));
 			neighbours.addAll(sqrSets.get((this.getRow()/3) * 3 + this.getCol()/3));
