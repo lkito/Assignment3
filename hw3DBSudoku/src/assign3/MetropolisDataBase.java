@@ -12,9 +12,19 @@ public class MetropolisDataBase {
     public static final int POPULATION_MORE_THAN = -10;
     public static final int POPULATION_LESS_OR_EQUAL = -11;
 
+
+    public static final String POPULATION_MORE_THAN_NAME = "larger than";
+    public static final String POPULATION_LESS_OR_EQUAL_NAME = "smaller than or equal to";
+
     // Metropolis and continent name match types
     public static final int MATCH_TYPE_EXACT = -20;
     public static final int MATCH_TYPE_PARTIAL = -21;
+
+    public static final String MATCH_TYPE_EXACT_NAME = "Exact Match";
+    public static final String MATCH_TYPE_PARTIAL_NAME = "Partial Match";
+
+
+    public static final int DATA_SIZE = 3;
 
     private String user = MYSQL_USERNAME;
     private String pass = MYSQL_PASSWORD;
@@ -23,6 +33,8 @@ public class MetropolisDataBase {
 
     private Connection con;
     private Statement stmt;
+
+    private List<SingleEntry> data;
 
     public MetropolisDataBase(){
         try {
@@ -37,6 +49,7 @@ public class MetropolisDataBase {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        data = new ArrayList<>();
     }
 
 
@@ -50,6 +63,8 @@ public class MetropolisDataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        data.clear();
+        data.add(new SingleEntry(metropolis, continent, population));
         return true;
     }
 
@@ -93,10 +108,17 @@ public class MetropolisDataBase {
         return query;
     }
 
-    public List<SingleEntry> searchData(String metropolis, String continent, long population, int popSearch, int nameSearch){
+    public int getRows(){
+        return data.size();
+    }
+
+    public int getCols(){
+        return DATA_SIZE;
+    }
+
+    private List<SingleEntry> getData(String query){
         List<SingleEntry> result = new ArrayList<>();
         try {
-            String query = generateQuery(metropolis, continent, population, popSearch, nameSearch);
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
                 SingleEntry se = new SingleEntry(rs.getString("metropolis"),
@@ -109,17 +131,25 @@ public class MetropolisDataBase {
         return result;
     }
 
+    public List<SingleEntry> getCurrentData(){
+        return new ArrayList<>(data);
+    }
+
+    public void searchData(String metropolis, String continent, long population, int popSearch, int nameSearch){
+        List<SingleEntry> result = getData(generateQuery(metropolis, continent, population, popSearch, nameSearch));
+        data = new ArrayList<>(result);
+    }
+
     public void searchData(String metropolis, String continent, int popSearch, int nameSearch){
         searchData(metropolis, continent, -1, popSearch, nameSearch);
     }
 
     public static void main(String[] args){
         MetropolisDataBase mdb = new MetropolisDataBase();
-        mdb.addData("Tbilisi", "Europe", 4_000_000);
-        List<SingleEntry> res = mdb.searchData("Tbilisi", "Europe",
-                1_000_000, mdb.POPULATION_MORE_THAN, mdb.MATCH_TYPE_EXACT);
-        System.out.println("SIZE: " + res.size() + " res: " + res.get(0).getMetropolis() + " "
-                + res.get(0).getContinent() + " " + res.get(0).getPopulation());
+        mdb.searchData("Tbilisi", "Europe",
+                1_000_000, mdb.POPULATION_MORE_THAN, mdb.MATCH_TYPE_PARTIAL);
+        System.out.println("SIZE: " + mdb.getRows() + " res: " + mdb.getCurrentData().get(0).getMetropolis() + " "
+                + mdb.getCurrentData().get(0).getContinent() + " " + mdb.getCurrentData().get(0).getPopulation());
     }
 
 }
